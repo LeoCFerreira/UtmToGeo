@@ -12,4 +12,8 @@
     <PackageReference Include="AngleSharp.Js" Version="0.15.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoordinatorConversorLib\CoordinatorConversorLib.csproj" />
+  </ItemGroup>
+
 </Project>

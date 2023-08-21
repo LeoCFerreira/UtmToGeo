@@ -1,0 +1,114 @@
+﻿<Window x:Class="WpfUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:WpfUI.ViewModels"
+        xmlns:view="clr-namespace:WpfUI.View"
+        xmlns:views="clr-namespace:WpfUI.Views"
+        xmlns:local="clr-namespace:WpfUI"
+        mc:Ignorable="d"
+        FontFamily="Segoe Ui"
+        FontSize="12"
+        Height="450" Width="440"
+        MinHeight="600" MinWidth="480"
+        MaxHeight="800" MaxWidth="600"
+        Title="Conversor de coordenadas ver.1.0.0" >
+
+    <Grid Margin="15">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:SingleConversionViewModel}">
+                <view:SingleConversionView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:MultipleConversionViewModel}">
+                <views:MultipleConversionView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Vertical"
+                    Margin="0,0,0,20">
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="CONVERSOR DE COORDENADAS: "
+                            Style="{StaticResource Header1}"/>
+
+                <TextBlock Text="UTM PARA GEOGRÁFICAS"
+                       Style="{StaticResource SemiHeader1}"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="DATUM: "
+                           Style="{StaticResource ObservationLabel1}"/>
+                
+                <TextBlock Text="WGS84"
+                           Style="{StaticResource ObservationLabel1}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,5,0,20">
+
+            <RadioButton Content="Uma coordenada"
+                         IsChecked="{Binding IsSingleConversion}"
+                         MinWidth="150"/>
+
+            <RadioButton Content="Várias coordenadas (.csv)"
+                         MinWidth="150"
+                         IsChecked="{Binding IsMultipleConversion}"/>
+        </StackPanel>
+        <Border Grid.Column="0" Grid.Row="1"
+                Grid.ColumnSpan="2"
+                BorderBrush="LightGray"
+                BorderThickness="0 0 0 0.5"/>
+
+        <ContentControl Grid.Column="0" Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Content="{Binding CurrentViewModel}" Grid.RowSpan="2"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    Margin="10 0">
+            
+            <TextBlock Text="Email: leonardocoelhoferreira@gmail.com"
+                       Style="{StaticResource ObservationLabel2}"/>
+
+            <TextBlock Text="Tel: +55 (98) 98504 - 5574"
+                       Style="{StaticResource ObservationLabel2}"/>
+
+            <TextBlock Style="{StaticResource ObservationLabelLink}">
+                <Hyperlink NavigateUri="https://github.com/LeoCFerreira"
+                            RequestNavigate="Hyperlink_RequestNavigate">
+                    GitHub
+                </Hyperlink>
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource ObservationLabelLink}">
+                <Hyperlink NavigateUri="https://www.linkedin.com/in/leonardocoelhoferreira/"
+                           RequestNavigate="Hyperlink_RequestNavigate">
+                    LinkedIn
+                </Hyperlink>
+                
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
